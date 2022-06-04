@@ -1,0 +1,15 @@
+<div class="gift-warp-section" data-bind="visible: canVisibleSection">
+	<div class="gift-section">
+		<div class="git-title">
+			<label><input data-bind='checked: isClickCheckox' type="checkbox" value="is_gift_warp"><span data-bind="i18n: 'Buy it as a Gift?'"></span></label>
+		</div>
+		<div class="git-text">
+			<span data-bind="i18n: 'Type your message'"></span>
+		</div>
+		<div class="product-section" data-bind="visible: productSectionVisable">
+			<div class="gift-pro-listing">
+				<div data-bind="html: caProductListing"></div>
+			</div>
+		</div>
+	</div>
+</div>

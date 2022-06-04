@@ -1,0 +1,27 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * @var \Magento\Sales\Block\Adminhtml\Order\View\Info $block
+ */
+$itemGiftWrapMessage = null;
+$order = $block->getOrder();
+foreach($order->getAllVisibleItems() as $item) {
+	if($item->getIsGiftWrap() != null && $item->getIsGiftWrap() != 'no'):
+		$itemGiftWrapMessage = $item->getGiftWrapMessage();
+	endif;
+}
+?>
+<?php if($itemGiftWrapMessage != null): ?>
+	<section class="admin__page-section order-addresses">
+	    <div class="admin__page-section-title">
+	        <span class="title"><?= $block->escapeHtml(__('Gift Wrap Message')) ?></span>
+	    </div>
+	    <div class="admin__page-section-content">
+	       <?php echo $itemGiftWrapMessage; ?>
+	    </div>
+	</section>
+<?php endif; ?>

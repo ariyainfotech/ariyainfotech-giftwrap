@@ -1,0 +1,38 @@
+{
+    "name": "ariyainfotech/module-giftwrap",
+    "description": "Extension For Magento2 Custom GiftWrap Developed By Ariya InfoTech (ariya infotech.com)",
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "version":"1.0.1",
+    "authors": [
+        {
+            "name": "Ariya InfoTech",
+            "email": "info@ariyainfotech@gmail.com"
+        },
+        {
+            "name": "Yuvrajsinh Raulji",
+            "email": "toyuvrajraulji@gmail.com"
+        },
+        {
+            "name": "AY Business Solutions Private Limited",
+            "email": "media@aybusinesses.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.3|^8.1",
+		"ariyainfotech/module-base": "1.*"
+    },
+    "homepage": "https://www.ariyainfotech.com",
+    "autoload": {
+        "psr-4": {
+            "AriyaInfoTech\\GiftWrap\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

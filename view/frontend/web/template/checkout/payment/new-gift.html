@@ -1,0 +1,17 @@
+<div class="gift-warp-section" data-bind="visible: canVisibleSection">
+	<div class="gift-section">
+		<div class="git-title">
+			<label><input data-bind="click: isClickCheckox" type="checkbox" value="is_gift_warp"><span data-bind="i18n: 'Giving a Gift?'"></span></label>
+		</div>
+		<div class="git-text">
+			<span data-bind="i18n: 'Gift Wrap and gift card message!'"></span>
+		</div>
+		<div class="product-section">
+			<div class="git-title pro"><span data-bind="i18n: 'Please select items which you want to gift wrap and write a gift card message.'"></div>
+			<div class="gift-pro-listing">
+				<div data-bind="html: caProductListing"></div>
+			</div>
+			<button class="action action-apply" type="submit" data-bind="click: setGiftWrap">Save</button>
+		</div>
+	</div>
+</div>

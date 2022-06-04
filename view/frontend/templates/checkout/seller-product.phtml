@@ -1,0 +1,115 @@
+<?php
+
+ $helper = \Magento\Framework\App\ObjectManager::getInstance()->get('AriyaInfoTech\GiftWrap\Helper\Data');	
+ $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+ 
+ $cart = $objectManager->get('\Magento\Checkout\Model\Cart'); 
+ $_store = $cart->getQuote()->getStore();
+ $itemsCollection = $cart->getQuote()->getItemsCollection();
+
+ $itemsVisible = $cart->getQuote()->getAllVisibleItems();
+
+ $items = $cart->getQuote()->getAllItems();
+ $itemsnew = $cart->getItems();
+ 
+ $_imageHelper = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Catalog\Helper\Image');
+ $_baseImageUrl = $_store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA).'catalog/product';
+?>
+<?php $isGift = 'no'; ?>
+
+<?php foreach($itemsVisible as $item): ?>
+	<?php if($helper->isProductsGiftCard($item->getProductId())): ?>
+		<?php $isGift = 'yes'; ?>
+	<?php endif; ?>
+<?php endforeach; ?>
+<?php if($isGift == 'yes'): ?>
+	
+<?php endif; ?>
+<?php 
+	$ic = 0;
+?>
+<?php foreach($itemsVisible as $item): ?>
+<?php if($helper->isProductsGiftCard($item->getProductId())): ?>
+	<?php $isGift = 'yes'; ?>
+	<?php if($ic < 1): ?>
+	<div class="products-show">
+		<div class="wrap_message">
+			<textarea name="wrap_message" class="gift_messages" data-id="<?php echo $item->getId(); ?>" id="text-message-<?php echo $item->getId(); ?>"><?php echo $item->getGiftWrapMessage(); ?></textarea>
+		</div>
+	</div>
+	<?php endif; ?>
+	<?php $ic++; ?>
+<?php endif; ?>
+<?php endforeach; ?>
+<?php if($isGift == 'yes'): ?>
+<script>
+require(['jquery', 'jquery/ui'], function($){
+	jQuery(document).ready(function(){
+		var customurl = "<?php echo $this->getUrl().'giftwrap/index/save'?>",
+			message = 'no';
+			
+		jQuery('.gift_messages').focusout(function(){ 
+			var itemId = jQuery(this).attr('data-id');
+			var message = jQuery(this).val();
+				if(message == null){
+					message = 'no';
+				}
+			if(itemId != null){
+				jQuery.ajax({
+					url: customurl,
+					type: 'POST',
+					dataType: 'json',
+					showLoader: true,
+					data: {
+						itemid: itemId,
+						isgiftwrap: 'yes',
+						messageadd: message
+					},
+					complete: function(response){
+						console.log("done");	
+					}
+				});
+			}
+		});
+		jQuery(".giftSelectd").change(function(){ 
+			ItemId = jQuery(this).val();
+			if(jQuery(this).is(":checked")){
+				jQuery('#text-message-'+ItemId).prop("disabled", false);
+				message = jQuery('#text-message-'+ItemId).val();
+				if(message == null){
+					message = 'no';
+				}
+				jQuery.ajax({
+					url: customurl,
+					type: 'POST',
+					dataType: 'json',
+					data: {
+						itemid: ItemId,
+						isgiftwrap: 'yes',
+						messageadd: message,
+					},
+					complete: function(response){
+						console.log("done");	
+					}
+				});	
+			}else{
+				jQuery('#text-message-'+ItemId).prop("disabled", true);
+				jQuery.ajax({
+					url: customurl,
+					type: 'POST',
+					dataType: 'json',
+					data: {
+						itemid: ItemId,
+						isgiftwrap: 'no',
+						messageadd: 'no'
+					},
+					complete: function(response){
+						console.log("done");	
+					}
+				});	
+			}
+		});
+	});
+});	
+</script>			
+<?php endif; ?>

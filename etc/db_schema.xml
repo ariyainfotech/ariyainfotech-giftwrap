@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="quote_item">
+		<column comment="Gift Wrap"  name="is_gift_wrap" nullable="true" xsi:type="varchar"/>
+		<column comment="Gift Wrap Message"  name="gift_wrap_message" nullable="true" xsi:type="text"/>
+	</table>
+	<table name="sales_order_item">
+		<column comment="Gift Wrap" name="is_gift_wrap" nullable="true" xsi:type="varchar"/>
+		<column comment="Gift Wrap Message" name="gift_wrap_message" nullable="true" xsi:type="text"/>
+	</table>
+</schema>
