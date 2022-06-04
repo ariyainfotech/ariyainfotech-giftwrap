@@ -27,12 +27,6 @@
         "php": ">=7.3|^8.1",
 		"ariyainfotech/module-base": "1.*"
     },
-	"repositories": [
-		{
-			"type": "composer",
-			"url": "https://repo.magento.com/"
-		}
-	],
     "homepage": "https://www.ariyainfotech.com",
     "autoload": {
         "psr-4": {
