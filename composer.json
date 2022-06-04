@@ -22,10 +22,6 @@
             "email": "media@aybusinesses.com"
         }
     ],
-	"require-dev": {
-        "phpunit/phpunit": "*",
-        "composer/composer": "*@dev"
-    },
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.3|^8.1",
